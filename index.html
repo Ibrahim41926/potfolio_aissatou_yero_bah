@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ePortfolio — Aissatou Yero Bah</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy:      #1a2744;
+            --navy2:     #2a3f6e;
+            --gold:      #c9a84c;
+            --gold-lt:   #e8d5a3;
+            --cream:     #f8f5f0;
+            --white:     #ffffff;
+            --text:      #2c2c2c;
+            --text-lt:   #6b6b6b;
+            --border:    #e5e0d8;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.7;
+        }
+
+        /* ─── NAV ─────────────────────────────────────────── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(26,39,68,0.96);
+            backdrop-filter: blur(12px);
+            padding: 1rem 2.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem; color: var(--gold); letter-spacing: .06em;
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            color: rgba(255,255,255,.75); text-decoration: none;
+            font-size: .82rem; font-weight: 500;
+            letter-spacing: .07em; text-transform: uppercase;
+            transition: color .25s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* ─── HERO ────────────────────────────────────────── */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 55%, var(--navy) 100%);
+            display: flex; align-items: center;
+            padding: 6rem 2rem 3rem;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; top: -40%; right: -15%;
+            width: 650px; height: 650px; border-radius: 50%;
+            background: rgba(201,168,76,.07); pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute; bottom: -25%; left: -8%;
+            width: 400px; height: 400px; border-radius: 50%;
+            background: rgba(201,168,76,.04); pointer-events: none;
+        }
+        .hero-container {
+            max-width: 1100px; margin: 0 auto; width: 100%;
+            display: grid; grid-template-columns: 1fr 420px; gap: 4rem; align-items: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(201,168,76,.18);
+            border: 1px solid rgba(201,168,76,.35);
+            color: var(--gold-lt);
+            padding: .4rem 1.1rem; border-radius: 50px;
+            font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+            margin-bottom: 1.6rem;
+        }
+        .hero-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.8rem; font-weight: 300; line-height: 1.1;
+            color: white; margin-bottom: .6rem;
+        }
+        .hero-name strong { font-weight: 600; color: var(--gold); display: block; }
+        .hero-subtitle {
+            font-size: .95rem; color: rgba(255,255,255,.65);
+            margin-bottom: 2rem; font-weight: 300;
+        }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.5rem; }
+        .hero-tag {
+            background: rgba(255,255,255,.09);
+            border: 1px solid rgba(255,255,255,.18);
+            color: rgba(255,255,255,.82);
+            padding: .3rem .85rem; border-radius: 50px; font-size: .78rem;
+        }
+        .hero-photo-wrap { display: flex; justify-content: center; }
+        .hero-photo-frame {
+            position: relative; width: 340px; height: 400px;
+        }
+        .hero-photo-frame::before {
+            content: '';
+            position: absolute; top: -14px; right: -14px;
+            width: 100%; height: 100%;
+            border: 2px solid var(--gold);
+            border-radius: 14px; opacity: .45;
+        }
+        .hero-photo {
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center top;
+            border-radius: 14px;
+            box-shadow: 0 30px 60px rgba(0,0,0,.35);
+        }
+
+        /* ─── SHARED ──────────────────────────────────────── */
+        section { padding: 5.5rem 2rem; }
+        .container { max-width: 920px; margin: 0 auto; }
+        .section-label {
+            font-size: .73rem; font-weight: 600;
+            letter-spacing: .22em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: .6rem;
+        }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem; font-weight: 400;
+            color: var(--navy); margin-bottom: 2.8rem; line-height: 1.2;
+        }
+
+        /* ─── PRÉSENTATION ────────────────────────────────── */
+        .about { background: var(--white); }
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 4rem; align-items: start;
+        }
+        .about-text p { color: var(--text-lt); margin-bottom: 1.2rem; font-size: .94rem; }
+        .about-photo { border-radius: 14px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.1); }
+        .about-photo img { width: 100%; height: 360px; object-fit: cover; display: block; }
+
+        .info-card {
+            background: var(--cream);
+            border-left: 3px solid var(--gold);
+            padding: 1.2rem 1.4rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1.8rem;
+        }
+        .info-row { display: flex; gap: .5rem; margin-bottom: .5rem; align-items: baseline; }
+        .info-row:last-child { margin-bottom: 0; }
+        .info-label {
+            font-weight: 600; color: var(--navy);
+            min-width: 110px; font-size: .78rem;
+            text-transform: uppercase; letter-spacing: .05em;
+        }
+        .info-value { color: var(--text-lt); font-size: .88rem; }
+
+        /* ─── PARCOURS / TIMELINE ─────────────────────────── */
+        .parcours { background: var(--cream); }
+        .timeline { position: relative; padding-left: 2.2rem; }
+        .timeline::before {
+            content: ''; position: absolute;
+            left: 0; top: 8px; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,.08));
+        }
+        .timeline-item { position: relative; padding-bottom: 2.8rem; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-dot {
+            position: absolute; left: -2.2rem; top: 7px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--gold);
+            transform: translateX(-5px);
+            border: 2px solid var(--cream);
+            box-shadow: 0 0 0 3px rgba(201,168,76,.3);
+        }
+        .timeline-date {
+            font-size: .76rem; font-weight: 600;
+            letter-spacing: .12em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: .3rem;
+        }
+        .timeline-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.45rem; color: var(--navy); margin-bottom: .2rem;
+        }
+        .timeline-sub {
+            font-size: .83rem; color: var(--text-lt);
+            font-style: italic; margin-bottom: .5rem;
+        }
+        .timeline-desc { font-size: .9rem; color: var(--text-lt); max-width: 620px; }
+
+        /* ─── SITUATION D'APPRENTISSAGE ───────────────────── */
+        .situation { background: var(--white); }
+
+        .situation-intro {
+            background: linear-gradient(135deg, var(--navy), var(--navy2));
+            color: white; padding: 2.2rem; border-radius: 14px;
+            margin-bottom: 3rem;
+        }
+        .situation-intro h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem; font-weight: 400;
+            color: var(--gold-lt); margin-bottom: .75rem;
+        }
+        .situation-intro p { font-size: .9rem; color: rgba(255,255,255,.78); line-height: 1.85; }
+
+        .grille-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.9rem; color: var(--navy);
+            margin-bottom: 1.8rem; text-align: center;
+        }
+
+        /* ─── GRILLE ──────────────────────────────────────── */
+        .grille {
+            border: 1px solid var(--border);
+            border-radius: 14px; overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,.06);
+        }
+        .grille-row {
+            display: grid; grid-template-columns: 210px 1fr;
+            border-bottom: 1px solid var(--border);
+        }
+        .grille-row:last-child { border-bottom: none; }
+
+        .grille-header {
+            background: var(--navy);
+            padding: 1.4rem 1.5rem;
+            display: flex; flex-direction: column; justify-content: center;
+            border-right: 1px solid rgba(255,255,255,.08);
+        }
+        .grille-header-num {
+            font-size: .68rem; font-weight: 600;
+            letter-spacing: .18em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: .25rem;
+        }
+        .grille-header-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; color: white; font-weight: 400;
+        }
+        .grille-header-question {
+            font-size: .76rem; color: rgba(255,255,255,.48);
+            font-style: italic; margin-top: .2rem;
+        }
+        .grille-content { background: white; padding: 1.4rem 1.6rem; }
+        .grille-content p { font-size: .9rem; color: var(--text-lt); line-height: 1.85; }
+        .grille-content .hl { font-weight: 600; color: var(--navy); }
+
+        /* alternating row tint */
+        .grille-row:nth-child(even) .grille-content { background: #fafaf8; }
+
+        /* ─── FOOTER ──────────────────────────────────────── */
+        footer {
+            background: var(--navy); color: white;
+            padding: 3.5rem 2rem; text-align: center;
+        }
+        .footer-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.1rem; color: var(--gold); margin-bottom: .4rem;
+        }
+        .footer-subtitle { font-size: .84rem; color: rgba(255,255,255,.48); margin-bottom: 1.5rem; }
+        .footer-divider {
+            width: 60px; height: 2px;
+            background: var(--gold); margin: 1.5rem auto;
+            opacity: .4;
+        }
+        .footer-note { font-size: .76rem; color: rgba(255,255,255,.28); }
+
+        /* ─── HAMBURGER ───────────────────────────────────── */
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: .4rem;
+            background: none;
+            border: none;
+        }
+        .nav-burger span {
+            display: block;
+            width: 24px; height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all .3s;
+        }
+        .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-burger.open span:nth-child(2) { opacity: 0; }
+        .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ─── RESPONSIVE 820px (tablettes) ────────────────── */
+        @media (max-width: 820px) {
+            /* nav */
+            .nav-burger { display: flex; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: rgba(26,39,68,.98);
+                flex-direction: column;
+                gap: 0;
+                padding: .5rem 0;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links li a {
+                display: block;
+                padding: .85rem 2rem;
+                border-bottom: 1px solid rgba(255,255,255,.06);
+                font-size: .9rem;
+            }
+
+            /* hero */
+            .hero { padding: 5rem 1.4rem 3rem; }
+            .hero-container { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+            .hero-photo-wrap { order: -1; }
+            .hero-photo-frame { width: 200px; height: 240px; margin: 0 auto; }
+            .hero-name { font-size: 2.6rem; }
+            .hero-tags { justify-content: center; }
+            .hero-badge { font-size: .72rem; }
+
+            /* sections */
+            section { padding: 3.5rem 1.4rem; }
+            .section-title { font-size: 2rem; }
+
+            /* about */
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .about-photo img { height: 260px; }
+
+            /* info card */
+            .info-row { flex-direction: column; gap: .1rem; margin-bottom: .75rem; }
+            .info-label { min-width: unset; }
+
+            /* grille */
+            .grille-row { grid-template-columns: 1fr; }
+            .grille-header {
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,.1);
+                padding: 1rem 1.2rem;
+                flex-direction: row;
+                align-items: center;
+                gap: .75rem;
+            }
+            .grille-header-question { display: none; }
+            .grille-content { padding: 1.1rem 1.2rem; }
+
+            /* timeline */
+            .timeline { padding-left: 1.6rem; }
+            .timeline-dot { left: -1.6rem; transform: translateX(-4px); }
+        }
+
+        /* ─── RESPONSIVE 480px (petits téléphones) ─────────── */
+        @media (max-width: 480px) {
+            nav { padding: .85rem 1.2rem; }
+            .hero { padding: 5rem 1rem 2.5rem; }
+            .hero-photo-frame { width: 170px; height: 200px; }
+            .hero-name { font-size: 2.1rem; }
+            .hero-subtitle { font-size: .85rem; }
+            .hero-tag { font-size: .72rem; padding: .25rem .65rem; }
+
+            section { padding: 3rem 1rem; }
+            .section-title { font-size: 1.75rem; }
+            .section-label { font-size: .68rem; }
+
+            .situation-intro { padding: 1.4rem; }
+            .situation-intro h3 { font-size: 1.3rem; }
+            .situation-intro p { font-size: .84rem; }
+
+            .grille-header-num { font-size: .62rem; }
+            .grille-header-title { font-size: 1rem; }
+            .grille-content p { font-size: .84rem; }
+
+            .timeline-title { font-size: 1.2rem; }
+            .timeline-desc { font-size: .84rem; }
+
+            .footer-name { font-size: 1.7rem; }
+            .info-card { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════ NAV -->
+<nav>
+    <div class="nav-logo">A. Y. Bah</div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#presentation" onclick="closeMenu()">Présentation</a></li>
+        <li><a href="#parcours" onclick="closeMenu()">Parcours</a></li>
+        <li><a href="#situation" onclick="closeMenu()">Situation d'apprentissage</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Menu" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- ════════════════════════════════════ HERO -->
+<section class="hero" id="hero">
+    <div class="hero-container">
+        <div class="hero-text">
+            <div class="hero-badge">ePortfolio · Licence AES · Université Rennes 2</div>
+            <h1 class="hero-name">
+                Aissatou Yero
+                <strong>Bah</strong>
+            </h1>
+            <p class="hero-subtitle">
+                Étudiante en L1 Administration Économique et Sociale<br>
+                Université Rennes 2 &middot; 2025 – 2026
+            </p>
+            <div class="hero-tags">
+                <span class="hero-tag">&#127468;&#127475; Guinée</span>
+                <span class="hero-tag">Sciences sociales</span>
+                <span class="hero-tag">Économie</span>
+                <span class="hero-tag">Droit</span>
+                <span class="hero-tag">Administration</span>
+            </div>
+        </div>
+        <div class="hero-photo-wrap">
+            <div class="hero-photo-frame">
+                <img src="photo-profil.jpeg" alt="Aissatou Yero Bah" class="hero-photo">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════ PRÉSENTATION -->
+<section class="about" id="presentation">
+    <div class="container">
+        <p class="section-label">Qui suis-je ?</p>
+        <h2 class="section-title">Présentation</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    Je m'appelle <strong>Aissatou Yero Bah</strong>, je suis étudiante guinéenne actuellement inscrite en première année de Licence <strong>Administration Économique et Sociale (AES)</strong> à l'Université Rennes 2.
+                </p>
+                <p>
+                    Née en Guinée, j'ai grandi avec la conviction profonde que l'éducation est la clé de l'émancipation personnelle et collective. Mon parcours a été marqué dès le départ par une grande curiosité intellectuelle, d'abord orientée vers les sciences naturelles, puis progressivement vers les sciences humaines et sociales.
+                </p>
+                <p>
+                    Mon arrivée en France en 2024 représente pour moi un nouveau départ — une opportunité de m'ouvrir à de nouvelles disciplines et de construire un projet professionnel solide dans les domaines de l'économie, du droit et de l'administration publique.
+                </p>
+                <p>
+                    Curieuse, déterminée et rigoureuse, j'aborde chaque défi comme une opportunité d'apprendre et de progresser. Mon parcours atypique, entre sciences exactes et sciences sociales, entre Guinée et France, forge un regard unique que je considère comme une richesse.
+                </p>
+                <div class="info-card">
+                    <div class="info-row">
+                        <span class="info-label">Nationalité</span>
+                        <span class="info-value">Guinéenne</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Formation</span>
+                        <span class="info-value">L1 AES &mdash; Université Rennes 2</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Bac obtenu</span>
+                        <span class="info-value">Sciences Expérimentales &mdash; 2023, mention Assez Bien</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Langues</span>
+                        <span class="info-value">Français &bull; Pular (langue maternelle)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Centres d'intérêt</span>
+                        <span class="info-value">Sciences, économie du développement, culture</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-photo">
+                <img src="photo-2.jpeg" alt="Aissatou Yero Bah">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════ PARCOURS -->
+<section class="parcours" id="parcours">
+    <div class="container">
+        <p class="section-label">Mon histoire</p>
+        <h2 class="section-title">Parcours</h2>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Avant 2023 — Guinée</div>
+                <h3 class="timeline-title">Scolarité — Parcours scientifique</h3>
+                <p class="timeline-sub">Guinée</p>
+                <p class="timeline-desc">
+                    Scolarité effectuée en Guinée dans la filière scientifique. Je développe dès le lycée un goût prononcé pour les matières scientifiques et une méthode de travail rigoureuse qui m'accompagnera tout au long de mon parcours.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2023 — Guinée</div>
+                <h3 class="timeline-title">Baccalauréat — Sciences Expérimentales</h3>
+                <p class="timeline-sub">Mention Assez Bien &mdash; Guinée</p>
+                <p class="timeline-desc">
+                    Obtention du Baccalauréat en Sciences Expérimentales avec la mention Assez Bien, validant des compétences solides en biologie, physique-chimie et sciences de la vie et de la Terre. Ce diplôme ouvre pour moi les portes de l'enseignement supérieur.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2023 – 2024 — Boké, Guinée</div>
+                <h3 class="timeline-title">Études supérieures — Sciences de la Terre</h3>
+                <p class="timeline-sub">Université de Boké, Guinée</p>
+                <p class="timeline-desc">
+                    Études supérieures en Sciences de la Terre à l'Université de Boké. Cette formation pratique et exigeante me permet d'allier théorie et terrain, notamment à travers un stage de découverte encadré par mes professeurs sur les ressources naturelles de la région.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2024 — Nancy, France</div>
+                <h3 class="timeline-title">Arrivée en France — Sciences de la Terre</h3>
+                <p class="timeline-sub">Université de Lorraine, Nancy</p>
+                <p class="timeline-desc">
+                    Arrivée en France et inscription en Sciences de la Terre à l'Université de Lorraine à Nancy. Une première immersion dans le système universitaire français : ses codes, ses méthodes pédagogiques, et son exigence d'autonomie constituent autant de nouveaux défis à relever.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2025 — Rennes, France</div>
+                <h3 class="timeline-title">Réorientation — Licence AES</h3>
+                <p class="timeline-sub">Université Rennes 2</p>
+                <p class="timeline-desc">
+                    Choix de réorientation vers l'Administration Économique et Sociale à l'Université Rennes 2. Une décision mûrement réfléchie, motivée par l'envie d'explorer les sciences sociales, le droit et l'économie — des disciplines en prise directe avec les enjeux de développement qui me tiennent profondément à cœur.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════ SITUATION D'APPRENTISSAGE -->
+<section class="situation" id="situation">
+    <div class="container">
+        <p class="section-label">Réflexivité</p>
+        <h2 class="section-title">Situation d'apprentissage</h2>
+
+        <div class="situation-intro">
+            <h3>Stage de découverte sur le terrain — Université de Boké</h3>
+            <p>
+                Dans le cadre de mes études en Sciences de la Terre à l'Université de Boké, j'ai participé à un stage de découverte sur le terrain avec mes camarades de classe, encadré par nos professeurs. Ce stage nous a menés à la découverte de gisements de fer ainsi que de plages de la région. Nos professeurs nous ont expliqué la formation de ces ressources naturelles et leur importance économique et environnementale. À l'issue du terrain, nous avons approfondi nos recherches par groupes pour constituer une brochure illustrée de photos, et nous avons soutenu nos travaux devant nos professeurs.
+            </p>
+        </div>
+
+        <h3 class="grille-title">Grille de réflexivité</h3>
+
+        <div class="grille">
+
+            <div class="grille-row">
+                <div class="grille-header">
+                    <span class="grille-header-num">Étape 1</span>
+                    <span class="grille-header-title">Description</span>
+                    <span class="grille-header-question">Que s'est-il passé ?</span>
+                </div>
+                <div class="grille-content">
+                    <p>
+                        Durant mes études en Sciences de la Terre à l'Université de Boké, j'ai participé à un <span class="hl">stage de découverte sur le terrain</span> organisé avec mes camarades de classe et encadré par nos professeurs. Nous avons visité des <span class="hl">gisements de fer</span> ainsi que des plages de la région. Nos encadrants nous ont expliqué comment se forment ces ressources naturelles et quelle est leur importance économique et environnementale. Après le terrain, nous avons travaillé en groupes pour approfondir nos recherches et <span class="hl">constituer une brochure</span> illustrée de photos des différents sites visités, que nous avons ensuite <span class="hl">soutenue devant nos professeurs</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grille-row">
+                <div class="grille-header">
+                    <span class="grille-header-num">Étape 2</span>
+                    <span class="grille-header-title">Ressentis</span>
+                    <span class="grille-header-question">Comment me suis-je sentie ?</span>
+                </div>
+                <div class="grille-content">
+                    <p>
+                        J'ai ressenti beaucoup d'<span class="hl">enthousiasme et de curiosité</span> dès les premières heures sur le terrain : voir concrètement ce que j'avais appris en cours était une expérience nouvelle et stimulante. Lors du travail de groupe pour la brochure, j'ai également éprouvé une certaine <span class="hl">pression</span> — la date de soutenance approchait, il fallait coordonner les contributions de chacun, sélectionner les photos et structurer le contenu de façon cohérente. Cette pression m'a poussée à me dépasser et à rester concentrée sur l'objectif commun.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grille-row">
+                <div class="grille-header">
+                    <span class="grille-header-num">Étape 3</span>
+                    <span class="grille-header-title">Évaluation</span>
+                    <span class="grille-header-question">Ce qui a bien ou mal fonctionné ?</span>
+                </div>
+                <div class="grille-content">
+                    <p>
+                        <span class="hl">Ce qui a bien fonctionné :</span> la cohésion du groupe a été un vrai point fort. Chacun a apporté sa contribution, et le fait de travailler sur des données et des photos que nous avions nous-mêmes collectées sur le terrain a rendu le travail concret et motivant. La soutenance s'est déroulée dans de bonnes conditions, et nous avons su répondre aux questions de nos professeurs.<br><br>
+                        <span class="hl">Ce qui a été difficile :</span> organiser le travail collectif dans un délai serré a demandé des efforts de coordination importants. Il a parfois fallu concilier des approches différentes et s'assurer que tout le monde avançait au même rythme, ce qui n'était pas toujours évident.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grille-row">
+                <div class="grille-header">
+                    <span class="grille-header-num">Étape 4</span>
+                    <span class="grille-header-title">Analyse</span>
+                    <span class="grille-header-question">Pourquoi ces difficultés ?</span>
+                </div>
+                <div class="grille-content">
+                    <p>
+                        Les difficultés de coordination s'expliquent en partie par le fait que c'était pour beaucoup d'entre nous une <span class="hl">première expérience de travail en groupe avec une production écrite et une soutenance formelle</span>. Nous n'avions pas encore pleinement développé les réflexes de répartition des tâches et de suivi collectif. La <span class="hl">contrainte de temps</span> a également amplifié ces difficultés, car elle laissait peu de marge pour corriger les écarts d'avancement entre les membres du groupe.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grille-row">
+                <div class="grille-header">
+                    <span class="grille-header-num">Étape 5</span>
+                    <span class="grille-header-title">Conclusions</span>
+                    <span class="grille-header-question">Qu'ai-je appris ?</span>
+                </div>
+                <div class="grille-content">
+                    <p>
+                        Ce stage m'a permis de développer plusieurs compétences essentielles : le <span class="hl">sens de l'organisation</span>, la capacité à <span class="hl">travailler sous pression</span>, l'<span class="hl">attention portée aux détails</span> sur le terrain, et surtout la valeur du <span class="hl">travail en équipe</span> — s'écouter, respecter les idées des autres et avancer ensemble vers un objectif commun. J'ai également compris que la connaissance théorique prend tout son sens lorsqu'elle est confrontée à la réalité du terrain.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grille-row">
+                <div class="grille-header">
+                    <span class="grille-header-num">Étape 6</span>
+                    <span class="grille-header-title">Plan d'action</span>
+                    <span class="grille-header-question">Que ferais-je différemment ?</span>
+                </div>
+                <div class="grille-content">
+                    <p>
+                        Si c'était à refaire, je <span class="hl">proposerais dès le départ une répartition claire des rôles</span> au sein du groupe — responsable de la rédaction, de la mise en page, de la sélection des photos — afin d'éviter les doublons et les retards. Je veillerais aussi à <span class="hl">fixer des points d'étape réguliers</span> pour m'assurer que tout le monde avance au même rythme. Ces apprentissages, je les applique aujourd'hui dans mes travaux de groupe à l'Université Rennes 2.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════ FOOTER -->
+<footer>
+    <div class="footer-name">Aissatou Yero Bah</div>
+    <p class="footer-subtitle">L1 Administration Économique et Sociale &middot; Université Rennes 2</p>
+    <div class="footer-divider"></div>
+    <p class="footer-note">ePortfolio réalisé dans le cadre de la L1 AES &middot; Université Rennes 2 &middot; 2025 – 2026</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('open');
+        document.getElementById('burger').classList.toggle('open');
+    }
+    function closeMenu() {
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('burger').classList.remove('open');
+    }
+    // Ferme le menu si on clique en dehors
+    document.addEventListener('click', function(e) {
+        var nav = document.querySelector('nav');
+        if (!nav.contains(e.target)) closeMenu();
+    });
+</script>
+</body>
+</html>
