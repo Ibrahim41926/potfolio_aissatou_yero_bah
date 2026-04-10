@@ -2,7 +2,7 @@
 
 Petit projet que j'ai réalisé pour une amie, **Aissatou Yero Bah**, étudiante en L1 AES à l'Université Rennes 2.
 
-Elle avait besoin d'un ePortfolio dans le cadre d'un devoir universitaire, alors je lui ai créé un site web simple, propre et responsive, hébergé sur GitHub Pages.
+
 
 ## Ce que contient le site
 
