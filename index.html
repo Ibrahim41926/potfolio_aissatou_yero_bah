@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,308 +11,160 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --navy:      #1a2744;
-            --navy2:     #2a3f6e;
-            --gold:      #c9a84c;
-            --gold-lt:   #e8d5a3;
-            --cream:     #f8f5f0;
-            --white:     #ffffff;
-            --text:      #2c2c2c;
-            --text-lt:   #6b6b6b;
-            --border:    #e5e0d8;
+            --navy:    #1a2744;
+            --navy2:   #2a3f6e;
+            --gold:    #c9a84c;
+            --gold-lt: #e8d5a3;
+            --cream:   #f8f5f0;
+            --white:   #ffffff;
+            --text:    #2c2c2c;
+            --text-lt: #6b6b6b;
+            --border:  #e5e0d8;
         }
 
         html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--cream); line-height: 1.7; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text);
-            background: var(--cream);
-            line-height: 1.7;
-        }
-
-        /* ─── NAV ─────────────────────────────────────────── */
+        /* ── NAV ─────────────────────────────────────── */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(26,39,68,0.96);
-            backdrop-filter: blur(12px);
+            background: rgba(26,39,68,.96); backdrop-filter: blur(12px);
             padding: 1rem 2.5rem;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .nav-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem; color: var(--gold); letter-spacing: .06em;
-        }
+        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--gold); letter-spacing: .06em; }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a {
-            color: rgba(255,255,255,.75); text-decoration: none;
-            font-size: .82rem; font-weight: 500;
-            letter-spacing: .07em; text-transform: uppercase;
-            transition: color .25s;
-        }
+        .nav-links a { color: rgba(255,255,255,.75); text-decoration: none; font-size: .82rem; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; transition: color .25s; }
         .nav-links a:hover { color: var(--gold); }
+        .nav-right { display: flex; align-items: center; gap: 1rem; }
 
-        /* ─── HERO ────────────────────────────────────────── */
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 55%, var(--navy) 100%);
-            display: flex; align-items: center;
-            padding: 6rem 2rem 3rem;
-            position: relative; overflow: hidden;
+        /* langue */
+        .lang-btn {
+            background: rgba(201,168,76,.18); border: 1px solid rgba(201,168,76,.4);
+            color: var(--gold-lt); padding: .28rem .75rem; border-radius: 50px;
+            font-size: .75rem; font-weight: 600; letter-spacing: .08em;
+            cursor: pointer; transition: all .2s; white-space: nowrap;
         }
-        .hero::before {
-            content: '';
-            position: absolute; top: -40%; right: -15%;
-            width: 650px; height: 650px; border-radius: 50%;
-            background: rgba(201,168,76,.07); pointer-events: none;
-        }
-        .hero::after {
-            content: '';
-            position: absolute; bottom: -25%; left: -8%;
-            width: 400px; height: 400px; border-radius: 50%;
-            background: rgba(201,168,76,.04); pointer-events: none;
-        }
-        .hero-container {
-            max-width: 1100px; margin: 0 auto; width: 100%;
-            display: grid; grid-template-columns: 1fr 420px; gap: 4rem; align-items: center;
-        }
-        .hero-badge {
-            display: inline-block;
-            background: rgba(201,168,76,.18);
-            border: 1px solid rgba(201,168,76,.35);
-            color: var(--gold-lt);
-            padding: .4rem 1.1rem; border-radius: 50px;
-            font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
-            margin-bottom: 1.6rem;
-        }
-        .hero-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.8rem; font-weight: 300; line-height: 1.1;
-            color: white; margin-bottom: .6rem;
-        }
-        .hero-name strong { font-weight: 600; color: var(--gold); display: block; }
-        .hero-subtitle {
-            font-size: .95rem; color: rgba(255,255,255,.65);
-            margin-bottom: 2rem; font-weight: 300;
-        }
-        .hero-tags { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.5rem; }
-        .hero-tag {
-            background: rgba(255,255,255,.09);
-            border: 1px solid rgba(255,255,255,.18);
-            color: rgba(255,255,255,.82);
-            padding: .3rem .85rem; border-radius: 50px; font-size: .78rem;
-        }
-        .hero-photo-wrap { display: flex; justify-content: center; }
-        .hero-photo-frame {
-            position: relative; width: 340px; height: 400px;
-        }
-        .hero-photo-frame::before {
-            content: '';
-            position: absolute; top: -14px; right: -14px;
-            width: 100%; height: 100%;
-            border: 2px solid var(--gold);
-            border-radius: 14px; opacity: .45;
-        }
-        .hero-photo {
-            width: 100%; height: 100%;
-            object-fit: cover; object-position: center top;
-            border-radius: 14px;
-            box-shadow: 0 30px 60px rgba(0,0,0,.35);
-        }
+        .lang-btn:hover { background: rgba(201,168,76,.32); }
 
-        /* ─── SHARED ──────────────────────────────────────── */
-        section { padding: 5.5rem 2rem; }
-        .container { max-width: 920px; margin: 0 auto; }
-        .section-label {
-            font-size: .73rem; font-weight: 600;
-            letter-spacing: .22em; text-transform: uppercase;
-            color: var(--gold); margin-bottom: .6rem;
-        }
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.6rem; font-weight: 400;
-            color: var(--navy); margin-bottom: 2.8rem; line-height: 1.2;
-        }
-
-        /* ─── PRÉSENTATION ────────────────────────────────── */
-        .about { background: var(--white); }
-        .about-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 4rem; align-items: start;
-        }
-        .about-text p { color: var(--text-lt); margin-bottom: 1.2rem; font-size: .94rem; }
-        .about-photo { border-radius: 14px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.1); }
-        .about-photo img { width: 100%; height: 360px; object-fit: cover; display: block; }
-
-        .info-card {
-            background: var(--cream);
-            border-left: 3px solid var(--gold);
-            padding: 1.2rem 1.4rem;
-            border-radius: 0 8px 8px 0;
-            margin-top: 1.8rem;
-        }
-        .info-row { display: flex; gap: .5rem; margin-bottom: .5rem; align-items: baseline; }
-        .info-row:last-child { margin-bottom: 0; }
-        .info-label {
-            font-weight: 600; color: var(--navy);
-            min-width: 110px; font-size: .78rem;
-            text-transform: uppercase; letter-spacing: .05em;
-        }
-        .info-value { color: var(--text-lt); font-size: .88rem; }
-
-        /* ─── PARCOURS / TIMELINE ─────────────────────────── */
-        .parcours { background: var(--cream); }
-        .timeline { position: relative; padding-left: 2.2rem; }
-        .timeline::before {
-            content: ''; position: absolute;
-            left: 0; top: 8px; bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,.08));
-        }
-        .timeline-item { position: relative; padding-bottom: 2.8rem; }
-        .timeline-item:last-child { padding-bottom: 0; }
-        .timeline-dot {
-            position: absolute; left: -2.2rem; top: 7px;
-            width: 12px; height: 12px; border-radius: 50%;
-            background: var(--gold);
-            transform: translateX(-5px);
-            border: 2px solid var(--cream);
-            box-shadow: 0 0 0 3px rgba(201,168,76,.3);
-        }
-        .timeline-date {
-            font-size: .76rem; font-weight: 600;
-            letter-spacing: .12em; text-transform: uppercase;
-            color: var(--gold); margin-bottom: .3rem;
-        }
-        .timeline-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.45rem; color: var(--navy); margin-bottom: .2rem;
-        }
-        .timeline-sub {
-            font-size: .83rem; color: var(--text-lt);
-            font-style: italic; margin-bottom: .5rem;
-        }
-        .timeline-desc { font-size: .9rem; color: var(--text-lt); max-width: 620px; }
-
-        /* ─── SITUATION D'APPRENTISSAGE ───────────────────── */
-        .situation { background: var(--white); }
-
-        .situation-intro {
-            background: linear-gradient(135deg, var(--navy), var(--navy2));
-            color: white; padding: 2.2rem; border-radius: 14px;
-            margin-bottom: 3rem;
-        }
-        .situation-intro h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.7rem; font-weight: 400;
-            color: var(--gold-lt); margin-bottom: .75rem;
-        }
-        .situation-intro p { font-size: .9rem; color: rgba(255,255,255,.78); line-height: 1.85; }
-
-        .grille-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.9rem; color: var(--navy);
-            margin-bottom: 1.8rem; text-align: center;
-        }
-
-        /* ─── GRILLE ──────────────────────────────────────── */
-        .grille {
-            border: 1px solid var(--border);
-            border-radius: 14px; overflow: hidden;
-            box-shadow: 0 4px 24px rgba(0,0,0,.06);
-        }
-        .grille-row {
-            display: grid; grid-template-columns: 210px 1fr;
-            border-bottom: 1px solid var(--border);
-        }
-        .grille-row:last-child { border-bottom: none; }
-
-        .grille-header {
-            background: var(--navy);
-            padding: 1.4rem 1.5rem;
-            display: flex; flex-direction: column; justify-content: center;
-            border-right: 1px solid rgba(255,255,255,.08);
-        }
-        .grille-header-num {
-            font-size: .68rem; font-weight: 600;
-            letter-spacing: .18em; text-transform: uppercase;
-            color: var(--gold); margin-bottom: .25rem;
-        }
-        .grille-header-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem; color: white; font-weight: 400;
-        }
-        .grille-header-question {
-            font-size: .76rem; color: rgba(255,255,255,.48);
-            font-style: italic; margin-top: .2rem;
-        }
-        .grille-content { background: white; padding: 1.4rem 1.6rem; }
-        .grille-content p { font-size: .9rem; color: var(--text-lt); line-height: 1.85; }
-        .grille-content .hl { font-weight: 600; color: var(--navy); }
-
-        /* alternating row tint */
-        .grille-row:nth-child(even) .grille-content { background: #fafaf8; }
-
-        /* ─── FOOTER ──────────────────────────────────────── */
-        footer {
-            background: var(--navy); color: white;
-            padding: 3.5rem 2rem; text-align: center;
-        }
-        .footer-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.1rem; color: var(--gold); margin-bottom: .4rem;
-        }
-        .footer-subtitle { font-size: .84rem; color: rgba(255,255,255,.48); margin-bottom: 1.5rem; }
-        .footer-divider {
-            width: 60px; height: 2px;
-            background: var(--gold); margin: 1.5rem auto;
-            opacity: .4;
-        }
-        .footer-note { font-size: .76rem; color: rgba(255,255,255,.28); }
-
-        /* ─── HAMBURGER ───────────────────────────────────── */
-        .nav-burger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: .4rem;
-            background: none;
-            border: none;
-        }
-        .nav-burger span {
-            display: block;
-            width: 24px; height: 2px;
-            background: white;
-            border-radius: 2px;
-            transition: all .3s;
-        }
+        /* hamburger */
+        .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: .4rem; background: none; border: none; }
+        .nav-burger span { display: block; width: 24px; height: 2px; background: white; border-radius: 2px; transition: all .3s; }
         .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .nav-burger.open span:nth-child(2) { opacity: 0; }
         .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-        /* ─── RESPONSIVE 820px (tablettes) ────────────────── */
-        @media (max-width: 820px) {
-            /* nav */
-            .nav-burger { display: flex; }
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%; left: 0; right: 0;
-                background: rgba(26,39,68,.98);
-                flex-direction: column;
-                gap: 0;
-                padding: .5rem 0;
-            }
-            .nav-links.open { display: flex; }
-            .nav-links li a {
-                display: block;
-                padding: .85rem 2rem;
-                border-bottom: 1px solid rgba(255,255,255,.06);
-                font-size: .9rem;
-            }
+        /* ── HERO ────────────────────────────────────── */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 55%, var(--navy) 100%);
+            display: flex; align-items: center; padding: 6rem 2rem 3rem;
+            position: relative; overflow: hidden;
+        }
+        .hero::before { content: ''; position: absolute; top: -40%; right: -15%; width: 650px; height: 650px; border-radius: 50%; background: rgba(201,168,76,.07); pointer-events: none; }
+        .hero::after  { content: ''; position: absolute; bottom: -25%; left: -8%; width: 400px; height: 400px; border-radius: 50%; background: rgba(201,168,76,.04); pointer-events: none; }
+        .hero-container { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 420px; gap: 4rem; align-items: center; }
+        .hero-badge { display: inline-block; background: rgba(201,168,76,.18); border: 1px solid rgba(201,168,76,.35); color: var(--gold-lt); padding: .4rem 1.1rem; border-radius: 50px; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1.6rem; }
+        .hero-name { font-family: 'Cormorant Garamond', serif; font-size: 3.8rem; font-weight: 300; line-height: 1.1; color: white; margin-bottom: .6rem; }
+        .hero-name strong { font-weight: 600; color: var(--gold); display: block; }
+        .hero-subtitle { font-size: .95rem; color: rgba(255,255,255,.65); margin-bottom: 2rem; font-weight: 300; }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2rem; }
+        .hero-tag { background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.82); padding: .3rem .85rem; border-radius: 50px; font-size: .78rem; }
+        .hero-cv-btn {
+            display: inline-flex; align-items: center; gap: .5rem;
+            background: var(--gold); color: var(--navy);
+            padding: .65rem 1.4rem; border-radius: 50px;
+            font-size: .82rem; font-weight: 600; text-decoration: none;
+            letter-spacing: .04em; transition: background .2s, transform .15s;
+        }
+        .hero-cv-btn:hover { background: var(--gold-lt); transform: translateY(-1px); }
+        .hero-photo-wrap { display: flex; justify-content: center; }
+        .hero-photo-frame { position: relative; width: 340px; height: 400px; }
+        .hero-photo-frame::before { content: ''; position: absolute; top: -14px; right: -14px; width: 100%; height: 100%; border: 2px solid var(--gold); border-radius: 14px; opacity: .45; }
+        .hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,.35); }
 
-            /* hero */
+        /* ── SHARED ──────────────────────────────────── */
+        section { padding: 5.5rem 2rem; }
+        .container { max-width: 920px; margin: 0 auto; }
+        .section-label { font-size: .73rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .6rem; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 400; color: var(--navy); margin-bottom: 2.8rem; line-height: 1.2; }
+
+        /* ── PRÉSENTATION ────────────────────────────── */
+        .about { background: var(--white); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+        .about-text p { color: var(--text-lt); margin-bottom: 1.2rem; font-size: .94rem; }
+        .about-photo { border-radius: 14px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.1); }
+        .about-photo img { width: 100%; height: 360px; object-fit: cover; display: block; }
+        .info-card { background: var(--cream); border-left: 3px solid var(--gold); padding: 1.2rem 1.4rem; border-radius: 0 8px 8px 0; margin-top: 1.8rem; }
+        .info-row { display: flex; gap: .5rem; margin-bottom: .5rem; align-items: baseline; }
+        .info-row:last-child { margin-bottom: 0; }
+        .info-label { font-weight: 600; color: var(--navy); min-width: 110px; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; }
+        .info-value { color: var(--text-lt); font-size: .88rem; }
+
+        /* ── PARCOURS ────────────────────────────────── */
+        .parcours { background: var(--cream); }
+        .timeline { position: relative; padding-left: 2.2rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,.08)); }
+        .timeline-item { position: relative; padding-bottom: 2.8rem; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-dot { position: absolute; left: -2.2rem; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); transform: translateX(-5px); border: 2px solid var(--cream); box-shadow: 0 0 0 3px rgba(201,168,76,.3); }
+        .timeline-date { font-size: .76rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: .3rem; }
+        .timeline-title { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; color: var(--navy); margin-bottom: .2rem; }
+        .timeline-sub { font-size: .83rem; color: var(--text-lt); font-style: italic; margin-bottom: .5rem; }
+        .timeline-desc { font-size: .9rem; color: var(--text-lt); max-width: 620px; }
+
+        /* ── SITUATION ───────────────────────────────── */
+        .situation { background: var(--white); }
+        .situation-intro { background: linear-gradient(135deg, var(--navy), var(--navy2)); color: white; padding: 2.2rem; border-radius: 14px; margin-bottom: 3rem; }
+        .situation-intro h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; color: var(--gold-lt); margin-bottom: .75rem; }
+        .situation-intro p { font-size: .9rem; color: rgba(255,255,255,.78); line-height: 1.85; }
+        .grille-title { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; color: var(--navy); margin-bottom: 1.8rem; text-align: center; }
+        .grille { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.06); }
+        .grille-row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--border); }
+        .grille-row:last-child { border-bottom: none; }
+        .grille-header { background: var(--navy); padding: 1.4rem 1.5rem; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid rgba(255,255,255,.08); }
+        .grille-header-num { font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: .25rem; }
+        .grille-header-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: white; font-weight: 400; }
+        .grille-header-question { font-size: .76rem; color: rgba(255,255,255,.48); font-style: italic; margin-top: .2rem; }
+        .grille-content { background: white; padding: 1.4rem 1.6rem; }
+        .grille-content p { font-size: .9rem; color: var(--text-lt); line-height: 1.85; }
+        .grille-content .hl { font-weight: 600; color: var(--navy); }
+        .grille-row:nth-child(even) .grille-content { background: #fafaf8; }
+
+        /* ── CONTACT ─────────────────────────────────── */
+        .contact { background: var(--cream); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+        .contact-item { background: var(--white); border-radius: 14px; padding: 1.6rem 1.8rem; display: flex; align-items: center; gap: 1.2rem; box-shadow: 0 2px 16px rgba(0,0,0,.05); }
+        .contact-icon { font-size: 1.5rem; flex-shrink: 0; width: 44px; height: 44px; background: rgba(201,168,76,.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .contact-info-label { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); margin-bottom: .2rem; }
+        .contact-info-value { font-size: .92rem; color: var(--text); }
+        .contact-info-value a { color: var(--navy); text-decoration: none; font-weight: 500; }
+        .contact-info-value a:hover { color: var(--gold); }
+        .cv-btn {
+            display: inline-flex; align-items: center; gap: .6rem;
+            background: var(--navy); color: white;
+            padding: .85rem 2rem; border-radius: 50px;
+            font-size: .88rem; font-weight: 600; text-decoration: none;
+            letter-spacing: .04em; transition: background .2s, transform .15s;
+            box-shadow: 0 4px 20px rgba(26,39,68,.25);
+        }
+        .cv-btn:hover { background: var(--navy2); transform: translateY(-2px); }
+        .cv-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* ── FOOTER ──────────────────────────────────── */
+        footer { background: var(--navy); color: white; padding: 3.5rem 2rem; text-align: center; }
+        .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; color: var(--gold); margin-bottom: .4rem; }
+        .footer-subtitle { font-size: .84rem; color: rgba(255,255,255,.48); margin-bottom: 1.5rem; }
+        .footer-divider { width: 60px; height: 2px; background: var(--gold); margin: 1.5rem auto; opacity: .4; }
+        .footer-note { font-size: .76rem; color: rgba(255,255,255,.28); }
+
+        /* ── RESPONSIVE 820px ────────────────────────── */
+        @media (max-width: 820px) {
+            .nav-burger { display: flex; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(26,39,68,.98); flex-direction: column; gap: 0; padding: .5rem 0; }
+            .nav-links.open { display: flex; }
+            .nav-links li a { display: block; padding: .85rem 2rem; border-bottom: 1px solid rgba(255,255,255,.06); font-size: .9rem; }
+
             .hero { padding: 5rem 1.4rem 3rem; }
             .hero-container { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
             .hero-photo-wrap { order: -1; }
@@ -321,37 +173,22 @@
             .hero-tags { justify-content: center; }
             .hero-badge { font-size: .72rem; }
 
-            /* sections */
             section { padding: 3.5rem 1.4rem; }
             .section-title { font-size: 2rem; }
-
-            /* about */
             .about-grid { grid-template-columns: 1fr; gap: 2rem; }
             .about-photo img { height: 260px; }
-
-            /* info card */
             .info-row { flex-direction: column; gap: .1rem; margin-bottom: .75rem; }
             .info-label { min-width: unset; }
-
-            /* grille */
             .grille-row { grid-template-columns: 1fr; }
-            .grille-header {
-                border-right: none;
-                border-bottom: 1px solid rgba(255,255,255,.1);
-                padding: 1rem 1.2rem;
-                flex-direction: row;
-                align-items: center;
-                gap: .75rem;
-            }
+            .grille-header { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); padding: 1rem 1.2rem; flex-direction: row; align-items: center; gap: .75rem; }
             .grille-header-question { display: none; }
             .grille-content { padding: 1.1rem 1.2rem; }
-
-            /* timeline */
             .timeline { padding-left: 1.6rem; }
             .timeline-dot { left: -1.6rem; transform: translateX(-4px); }
+            .contact-grid { grid-template-columns: 1fr; }
         }
 
-        /* ─── RESPONSIVE 480px (petits téléphones) ─────────── */
+        /* ── RESPONSIVE 480px ────────────────────────── */
         @media (max-width: 480px) {
             nav { padding: .85rem 1.2rem; }
             .hero { padding: 5rem 1rem 2.5rem; }
@@ -359,62 +196,54 @@
             .hero-name { font-size: 2.1rem; }
             .hero-subtitle { font-size: .85rem; }
             .hero-tag { font-size: .72rem; padding: .25rem .65rem; }
-
             section { padding: 3rem 1rem; }
             .section-title { font-size: 1.75rem; }
-            .section-label { font-size: .68rem; }
-
             .situation-intro { padding: 1.4rem; }
             .situation-intro h3 { font-size: 1.3rem; }
-            .situation-intro p { font-size: .84rem; }
-
-            .grille-header-num { font-size: .62rem; }
             .grille-header-title { font-size: 1rem; }
             .grille-content p { font-size: .84rem; }
-
             .timeline-title { font-size: 1.2rem; }
-            .timeline-desc { font-size: .84rem; }
-
             .footer-name { font-size: 1.7rem; }
-            .info-card { padding: 1rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════ NAV -->
+<!-- ══ NAV ══════════════════════════════════════════ -->
 <nav>
     <div class="nav-logo">A. Y. Bah</div>
     <ul class="nav-links" id="navLinks">
-        <li><a href="#presentation" onclick="closeMenu()">Présentation</a></li>
-        <li><a href="#parcours" onclick="closeMenu()">Parcours</a></li>
-        <li><a href="#situation" onclick="closeMenu()">Situation d'apprentissage</a></li>
+        <li><a href="#presentation" onclick="closeMenu()" data-i18n="nav-1">Présentation</a></li>
+        <li><a href="#parcours"     onclick="closeMenu()" data-i18n="nav-2">Parcours</a></li>
+        <li><a href="#situation"    onclick="closeMenu()" data-i18n="nav-3">Situation d'apprentissage</a></li>
+        <li><a href="#contact"      onclick="closeMenu()" data-i18n="nav-4">Contact</a></li>
     </ul>
-    <button class="nav-burger" id="burger" aria-label="Menu" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+        <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
+        <button class="nav-burger" id="burger" aria-label="Menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
 </nav>
 
-<!-- ════════════════════════════════════ HERO -->
+<!-- ══ HERO ══════════════════════════════════════════ -->
 <section class="hero" id="hero">
     <div class="hero-container">
         <div class="hero-text">
-            <div class="hero-badge">ePortfolio · Licence AES · Université Rennes 2</div>
-            <h1 class="hero-name">
-                Aissatou Yero
-                <strong>Bah</strong>
-            </h1>
-            <p class="hero-subtitle">
-                Étudiante en L1 Administration Économique et Sociale<br>
-                Université Rennes 2 &middot; 2025 – 2026
-            </p>
+            <div class="hero-badge" data-i18n="hero-badge">ePortfolio · Licence AES · Université Rennes 2</div>
+            <h1 class="hero-name">Aissatou Yero <strong>Bah</strong></h1>
+            <p class="hero-subtitle" data-i18n="hero-subtitle">Étudiante en L1 Administration Économique et Sociale<br>Université Rennes 2 &middot; 2025 – 2026</p>
             <div class="hero-tags">
                 <span class="hero-tag">&#127468;&#127475; Guinée</span>
-                <span class="hero-tag">Sciences sociales</span>
-                <span class="hero-tag">Économie</span>
-                <span class="hero-tag">Droit</span>
-                <span class="hero-tag">Administration</span>
+                <span class="hero-tag" data-i18n="tag-ss">Sciences sociales</span>
+                <span class="hero-tag" data-i18n="tag-eco">Économie</span>
+                <span class="hero-tag" data-i18n="tag-law">Droit</span>
+                <span class="hero-tag" data-i18n="tag-adm">Administration</span>
             </div>
+            <a href="cv.pdf" download class="hero-cv-btn">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span data-i18n="cv-btn">Télécharger mon CV</span>
+            </a>
         </div>
         <div class="hero-photo-wrap">
             <div class="hero-photo-frame">
@@ -424,46 +253,23 @@
     </div>
 </section>
 
-<!-- ════════════════════════════════════ PRÉSENTATION -->
+<!-- ══ PRÉSENTATION ══════════════════════════════════ -->
 <section class="about" id="presentation">
     <div class="container">
-        <p class="section-label">Qui suis-je ?</p>
-        <h2 class="section-title">Présentation</h2>
+        <p class="section-label" data-i18n="about-label">Qui suis-je ?</p>
+        <h2 class="section-title" data-i18n="about-title">Présentation</h2>
         <div class="about-grid">
             <div class="about-text">
-                <p>
-                    Je m'appelle <strong>Aissatou Yero Bah</strong>, je suis étudiante guinéenne actuellement inscrite en première année de Licence <strong>Administration Économique et Sociale (AES)</strong> à l'Université Rennes 2.
-                </p>
-                <p>
-                    Née en Guinée, j'ai grandi avec la conviction profonde que l'éducation est la clé de l'émancipation personnelle et collective. Mon parcours a été marqué dès le départ par une grande curiosité intellectuelle, d'abord orientée vers les sciences naturelles, puis progressivement vers les sciences humaines et sociales.
-                </p>
-                <p>
-                    Mon arrivée en France en 2024 représente pour moi un nouveau départ — une opportunité de m'ouvrir à de nouvelles disciplines et de construire un projet professionnel solide dans les domaines de l'économie, du droit et de l'administration publique.
-                </p>
-                <p>
-                    Curieuse, déterminée et rigoureuse, j'aborde chaque défi comme une opportunité d'apprendre et de progresser. Mon parcours atypique, entre sciences exactes et sciences sociales, entre Guinée et France, forge un regard unique que je considère comme une richesse.
-                </p>
+                <p data-i18n="about-p1">Je m'appelle <strong>Aissatou Yero Bah</strong>, je suis étudiante guinéenne actuellement inscrite en première année de Licence <strong>Administration Économique et Sociale (AES)</strong> à l'Université Rennes 2.</p>
+                <p data-i18n="about-p2">Née en Guinée, j'ai grandi avec la conviction profonde que l'éducation est la clé de l'émancipation personnelle et collective. Mon parcours a été marqué dès le départ par une grande curiosité intellectuelle, d'abord orientée vers les sciences naturelles, puis progressivement vers les sciences humaines et sociales.</p>
+                <p data-i18n="about-p3">Mon arrivée en France en 2024 représente pour moi un nouveau départ — une opportunité de m'ouvrir à de nouvelles disciplines et de construire un projet professionnel solide dans les domaines de l'économie, du droit et de l'administration publique.</p>
+                <p data-i18n="about-p4">Curieuse, déterminée et rigoureuse, j'aborde chaque défi comme une opportunité d'apprendre et de progresser. Mon parcours atypique, entre sciences exactes et sciences sociales, entre Guinée et France, forge un regard unique que je considère comme une richesse.</p>
                 <div class="info-card">
-                    <div class="info-row">
-                        <span class="info-label">Nationalité</span>
-                        <span class="info-value">Guinéenne</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Formation</span>
-                        <span class="info-value">L1 AES &mdash; Université Rennes 2</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Bac obtenu</span>
-                        <span class="info-value">Sciences Expérimentales &mdash; 2023, mention Assez Bien</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Langues</span>
-                        <span class="info-value">Français &bull; Pular (langue maternelle)</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Centres d'intérêt</span>
-                        <span class="info-value">Sciences, économie du développement, culture</span>
-                    </div>
+                    <div class="info-row"><span class="info-label" data-i18n="il-nat">Nationalité</span><span class="info-value" data-i18n="iv-nat">Guinéenne</span></div>
+                    <div class="info-row"><span class="info-label" data-i18n="il-form">Formation</span><span class="info-value" data-i18n="iv-form">L1 AES &mdash; Université Rennes 2</span></div>
+                    <div class="info-row"><span class="info-label" data-i18n="il-bac">Bac obtenu</span><span class="info-value" data-i18n="iv-bac">Sciences Expérimentales &mdash; 2023, mention Assez Bien</span></div>
+                    <div class="info-row"><span class="info-label" data-i18n="il-lang">Langues</span><span class="info-value" data-i18n="iv-lang">Français &bull; Pular (langue maternelle)</span></div>
+                    <div class="info-row"><span class="info-label" data-i18n="il-int">Centres d'intérêt</span><span class="info-value" data-i18n="iv-int">Sciences, économie du développement, culture</span></div>
                 </div>
             </div>
             <div class="about-photo">
@@ -473,161 +279,135 @@
     </div>
 </section>
 
-<!-- ════════════════════════════════════ PARCOURS -->
+<!-- ══ PARCOURS ══════════════════════════════════════ -->
 <section class="parcours" id="parcours">
     <div class="container">
-        <p class="section-label">Mon histoire</p>
-        <h2 class="section-title">Parcours</h2>
-
+        <p class="section-label" data-i18n="parc-label">Mon histoire</p>
+        <h2 class="section-title" data-i18n="parc-title">Parcours</h2>
         <div class="timeline">
 
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
-                <div class="timeline-date">Avant 2023 — Guinée</div>
-                <h3 class="timeline-title">Scolarité — Parcours scientifique</h3>
-                <p class="timeline-sub">Guinée</p>
-                <p class="timeline-desc">
-                    Scolarité effectuée en Guinée dans la filière scientifique. Je développe dès le lycée un goût prononcé pour les matières scientifiques et une méthode de travail rigoureuse qui m'accompagnera tout au long de mon parcours.
-                </p>
+                <div class="timeline-date"   data-i18n="tl1-date">Avant 2023 — Guinée</div>
+                <h3 class="timeline-title"   data-i18n="tl1-title">Scolarité — Parcours scientifique</h3>
+                <p class="timeline-sub"      data-i18n="tl1-sub">Guinée</p>
+                <p class="timeline-desc"     data-i18n="tl1-desc">Scolarité effectuée en Guinée dans la filière scientifique. Je développe dès le lycée un goût prononcé pour les matières scientifiques et une méthode de travail rigoureuse qui m'accompagnera tout au long de mon parcours.</p>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
-                <div class="timeline-date">2023 — Guinée</div>
-                <h3 class="timeline-title">Baccalauréat — Sciences Expérimentales</h3>
-                <p class="timeline-sub">Mention Assez Bien &mdash; Guinée</p>
-                <p class="timeline-desc">
-                    Obtention du Baccalauréat en Sciences Expérimentales avec la mention Assez Bien, validant des compétences solides en biologie, physique-chimie et sciences de la vie et de la Terre. Ce diplôme ouvre pour moi les portes de l'enseignement supérieur.
-                </p>
+                <div class="timeline-date"   data-i18n="tl2-date">2023 — Guinée</div>
+                <h3 class="timeline-title"   data-i18n="tl2-title">Baccalauréat — Sciences Expérimentales</h3>
+                <p class="timeline-sub"      data-i18n="tl2-sub">Mention Assez Bien &mdash; Guinée</p>
+                <p class="timeline-desc"     data-i18n="tl2-desc">Obtention du Baccalauréat en Sciences Expérimentales avec la mention Assez Bien, validant des compétences solides en biologie, physique-chimie et sciences de la vie et de la Terre. Ce diplôme ouvre pour moi les portes de l'enseignement supérieur.</p>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
-                <div class="timeline-date">2023 – 2024 — Boké, Guinée</div>
-                <h3 class="timeline-title">Études supérieures — Sciences de la Terre</h3>
-                <p class="timeline-sub">Université de Boké, Guinée</p>
-                <p class="timeline-desc">
-                    Études supérieures en Sciences de la Terre à l'Université de Boké. Cette formation pratique et exigeante me permet d'allier théorie et terrain, notamment à travers un stage de découverte encadré par mes professeurs sur les ressources naturelles de la région.
-                </p>
+                <div class="timeline-date"   data-i18n="tl3-date">2023 – 2024 — Boké, Guinée</div>
+                <h3 class="timeline-title"   data-i18n="tl3-title">Études supérieures — Sciences de la Terre</h3>
+                <p class="timeline-sub"      data-i18n="tl3-sub">Université de Boké, Guinée</p>
+                <p class="timeline-desc"     data-i18n="tl3-desc">Études supérieures en Sciences de la Terre à l'Université de Boké. Cette formation pratique et exigeante me permet d'allier théorie et terrain, notamment à travers un stage de découverte encadré par mes professeurs sur les ressources naturelles de la région.</p>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
-                <div class="timeline-date">2024 — Nancy, France</div>
-                <h3 class="timeline-title">Arrivée en France — Sciences de la Terre</h3>
-                <p class="timeline-sub">Université de Lorraine, Nancy</p>
-                <p class="timeline-desc">
-                    Arrivée en France et inscription en Sciences de la Terre à l'Université de Lorraine à Nancy. Une première immersion dans le système universitaire français : ses codes, ses méthodes pédagogiques, et son exigence d'autonomie constituent autant de nouveaux défis à relever.
-                </p>
+                <div class="timeline-date"   data-i18n="tl4-date">2024 — Nancy, France</div>
+                <h3 class="timeline-title"   data-i18n="tl4-title">Arrivée en France — Sciences de la Terre</h3>
+                <p class="timeline-sub"      data-i18n="tl4-sub">Université de Lorraine, Nancy</p>
+                <p class="timeline-desc"     data-i18n="tl4-desc">Arrivée en France et inscription en Sciences de la Terre à l'Université de Lorraine à Nancy. Une première immersion dans le système universitaire français : ses codes, ses méthodes pédagogiques, et son exigence d'autonomie constituent autant de nouveaux défis à relever.</p>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
-                <div class="timeline-date">2025 — Rennes, France</div>
-                <h3 class="timeline-title">Réorientation — Licence AES</h3>
-                <p class="timeline-sub">Université Rennes 2</p>
-                <p class="timeline-desc">
-                    Choix de réorientation vers l'Administration Économique et Sociale à l'Université Rennes 2. Une décision mûrement réfléchie, motivée par l'envie d'explorer les sciences sociales, le droit et l'économie — des disciplines en prise directe avec les enjeux de développement qui me tiennent profondément à cœur.
-                </p>
+                <div class="timeline-date"   data-i18n="tl5-date">2025 — Rennes, France</div>
+                <h3 class="timeline-title"   data-i18n="tl5-title">Réorientation — Licence AES</h3>
+                <p class="timeline-sub"      data-i18n="tl5-sub">Université Rennes 2</p>
+                <p class="timeline-desc"     data-i18n="tl5-desc">Choix de réorientation vers l'Administration Économique et Sociale à l'Université Rennes 2. Une décision mûrement réfléchie, motivée par l'envie d'explorer les sciences sociales, le droit et l'économie — des disciplines en prise directe avec les enjeux de développement qui me tiennent profondément à cœur.</p>
             </div>
 
         </div>
     </div>
 </section>
 
-<!-- ════════════════════════════════════ SITUATION D'APPRENTISSAGE -->
+<!-- ══ SITUATION D'APPRENTISSAGE ═════════════════════ -->
 <section class="situation" id="situation">
     <div class="container">
-        <p class="section-label">Réflexivité</p>
-        <h2 class="section-title">Situation d'apprentissage</h2>
+        <p class="section-label" data-i18n="sit-label">Réflexivité</p>
+        <h2 class="section-title" data-i18n="sit-title">Situation d'apprentissage</h2>
 
         <div class="situation-intro">
-            <h3>Stage de découverte sur le terrain — Université de Boké</h3>
-            <p>
-                Dans le cadre de mes études en Sciences de la Terre à l'Université de Boké, j'ai participé à un stage de découverte sur le terrain avec mes camarades de classe, encadré par nos professeurs. Ce stage nous a menés à la découverte de gisements de fer ainsi que de plages de la région. Nos professeurs nous ont expliqué la formation de ces ressources naturelles et leur importance économique et environnementale. À l'issue du terrain, nous avons approfondi nos recherches par groupes pour constituer une brochure illustrée de photos, et nous avons soutenu nos travaux devant nos professeurs.
-            </p>
+            <h3 data-i18n="sit-h3">Stage de découverte sur le terrain — Université de Boké</h3>
+            <p data-i18n="sit-p">Dans le cadre de mes études en Sciences de la Terre à l'Université de Boké, j'ai participé à un stage de découverte sur le terrain avec mes camarades de classe, encadré par nos professeurs. Ce stage nous a menés à la découverte de gisements de fer ainsi que de plages de la région. Nos professeurs nous ont expliqué la formation de ces ressources naturelles et leur importance économique et environnementale. À l'issue du terrain, nous avons approfondi nos recherches par groupes pour constituer une brochure illustrée de photos, et nous avons soutenu nos travaux devant nos professeurs.</p>
         </div>
 
-        <h3 class="grille-title">Grille de réflexivité</h3>
+        <h3 class="grille-title" data-i18n="grille-title">Grille de réflexivité</h3>
 
         <div class="grille">
 
             <div class="grille-row">
                 <div class="grille-header">
-                    <span class="grille-header-num">Étape 1</span>
-                    <span class="grille-header-title">Description</span>
-                    <span class="grille-header-question">Que s'est-il passé ?</span>
+                    <span class="grille-header-num"      data-i18n="g1-num">Étape 1</span>
+                    <span class="grille-header-title"    data-i18n="g1-title">Description</span>
+                    <span class="grille-header-question" data-i18n="g1-q">Que s'est-il passé ?</span>
                 </div>
                 <div class="grille-content">
-                    <p>
-                        Durant mes études en Sciences de la Terre à l'Université de Boké, j'ai participé à un <span class="hl">stage de découverte sur le terrain</span> organisé avec mes camarades de classe et encadré par nos professeurs. Nous avons visité des <span class="hl">gisements de fer</span> ainsi que des plages de la région. Nos encadrants nous ont expliqué comment se forment ces ressources naturelles et quelle est leur importance économique et environnementale. Après le terrain, nous avons travaillé en groupes pour approfondir nos recherches et <span class="hl">constituer une brochure</span> illustrée de photos des différents sites visités, que nous avons ensuite <span class="hl">soutenue devant nos professeurs</span>.
-                    </p>
+                    <p data-i18n="g1-c">Durant mes études en Sciences de la Terre à l'Université de Boké, j'ai participé à un <span class="hl">stage de découverte sur le terrain</span> organisé avec mes camarades et encadré par nos professeurs. Nous avons visité des <span class="hl">gisements de fer</span> ainsi que des plages de la région. Nos encadrants nous ont expliqué comment se forment ces ressources naturelles et leur importance économique et environnementale. Après le terrain, nous avons travaillé en groupes pour <span class="hl">constituer une brochure</span> illustrée de photos des sites visités, que nous avons ensuite <span class="hl">soutenue devant nos professeurs</span>.</p>
                 </div>
             </div>
 
             <div class="grille-row">
                 <div class="grille-header">
-                    <span class="grille-header-num">Étape 2</span>
-                    <span class="grille-header-title">Ressentis</span>
-                    <span class="grille-header-question">Comment me suis-je sentie ?</span>
+                    <span class="grille-header-num"      data-i18n="g2-num">Étape 2</span>
+                    <span class="grille-header-title"    data-i18n="g2-title">Ressentis</span>
+                    <span class="grille-header-question" data-i18n="g2-q">Comment me suis-je sentie ?</span>
                 </div>
                 <div class="grille-content">
-                    <p>
-                        J'ai ressenti beaucoup d'<span class="hl">enthousiasme et de curiosité</span> dès les premières heures sur le terrain : voir concrètement ce que j'avais appris en cours était une expérience nouvelle et stimulante. Lors du travail de groupe pour la brochure, j'ai également éprouvé une certaine <span class="hl">pression</span> — la date de soutenance approchait, il fallait coordonner les contributions de chacun, sélectionner les photos et structurer le contenu de façon cohérente. Cette pression m'a poussée à me dépasser et à rester concentrée sur l'objectif commun.
-                    </p>
+                    <p data-i18n="g2-c">J'ai ressenti beaucoup d'<span class="hl">enthousiasme et de curiosité</span> dès les premières heures sur le terrain : voir concrètement ce que j'avais appris en cours était une expérience nouvelle et stimulante. Lors du travail de groupe pour la brochure, j'ai également éprouvé une certaine <span class="hl">pression</span> — la soutenance approchait, il fallait coordonner les contributions de chacun et structurer le contenu de façon cohérente. Cette pression m'a poussée à me dépasser et à rester concentrée sur l'objectif commun.</p>
                 </div>
             </div>
 
             <div class="grille-row">
                 <div class="grille-header">
-                    <span class="grille-header-num">Étape 3</span>
-                    <span class="grille-header-title">Évaluation</span>
-                    <span class="grille-header-question">Ce qui a bien ou mal fonctionné ?</span>
+                    <span class="grille-header-num"      data-i18n="g3-num">Étape 3</span>
+                    <span class="grille-header-title"    data-i18n="g3-title">Évaluation</span>
+                    <span class="grille-header-question" data-i18n="g3-q">Ce qui a bien ou mal fonctionné ?</span>
                 </div>
                 <div class="grille-content">
-                    <p>
-                        <span class="hl">Ce qui a bien fonctionné :</span> la cohésion du groupe a été un vrai point fort. Chacun a apporté sa contribution, et le fait de travailler sur des données et des photos que nous avions nous-mêmes collectées sur le terrain a rendu le travail concret et motivant. La soutenance s'est déroulée dans de bonnes conditions, et nous avons su répondre aux questions de nos professeurs.<br><br>
-                        <span class="hl">Ce qui a été difficile :</span> organiser le travail collectif dans un délai serré a demandé des efforts de coordination importants. Il a parfois fallu concilier des approches différentes et s'assurer que tout le monde avançait au même rythme, ce qui n'était pas toujours évident.
-                    </p>
+                    <p data-i18n="g3-c"><span class="hl">Ce qui a bien fonctionné :</span> la cohésion du groupe a été un vrai point fort. Chacun a apporté sa contribution et le fait de travailler sur des données collectées nous-mêmes a rendu le travail concret et motivant. La soutenance s'est bien déroulée.<br><br><span class="hl">Ce qui a été difficile :</span> organiser le travail collectif dans un délai serré a demandé des efforts importants. Il a parfois fallu concilier des approches différentes et s'assurer que tout le monde avançait au même rythme.</p>
                 </div>
             </div>
 
             <div class="grille-row">
                 <div class="grille-header">
-                    <span class="grille-header-num">Étape 4</span>
-                    <span class="grille-header-title">Analyse</span>
-                    <span class="grille-header-question">Pourquoi ces difficultés ?</span>
+                    <span class="grille-header-num"      data-i18n="g4-num">Étape 4</span>
+                    <span class="grille-header-title"    data-i18n="g4-title">Analyse</span>
+                    <span class="grille-header-question" data-i18n="g4-q">Pourquoi ces difficultés ?</span>
                 </div>
                 <div class="grille-content">
-                    <p>
-                        Les difficultés de coordination s'expliquent en partie par le fait que c'était pour beaucoup d'entre nous une <span class="hl">première expérience de travail en groupe avec une production écrite et une soutenance formelle</span>. Nous n'avions pas encore pleinement développé les réflexes de répartition des tâches et de suivi collectif. La <span class="hl">contrainte de temps</span> a également amplifié ces difficultés, car elle laissait peu de marge pour corriger les écarts d'avancement entre les membres du groupe.
-                    </p>
+                    <p data-i18n="g4-c">Les difficultés s'expliquent par le fait que c'était pour beaucoup une <span class="hl">première expérience de travail en groupe avec une production écrite et une soutenance formelle</span>. Nous n'avions pas encore développé les réflexes de répartition des tâches et de suivi collectif. La <span class="hl">contrainte de temps</span> a également amplifié ces difficultés, laissant peu de marge pour corriger les écarts d'avancement.</p>
                 </div>
             </div>
 
             <div class="grille-row">
                 <div class="grille-header">
-                    <span class="grille-header-num">Étape 5</span>
-                    <span class="grille-header-title">Conclusions</span>
-                    <span class="grille-header-question">Qu'ai-je appris ?</span>
+                    <span class="grille-header-num"      data-i18n="g5-num">Étape 5</span>
+                    <span class="grille-header-title"    data-i18n="g5-title">Conclusions</span>
+                    <span class="grille-header-question" data-i18n="g5-q">Qu'ai-je appris ?</span>
                 </div>
                 <div class="grille-content">
-                    <p>
-                        Ce stage m'a permis de développer plusieurs compétences essentielles : le <span class="hl">sens de l'organisation</span>, la capacité à <span class="hl">travailler sous pression</span>, l'<span class="hl">attention portée aux détails</span> sur le terrain, et surtout la valeur du <span class="hl">travail en équipe</span> — s'écouter, respecter les idées des autres et avancer ensemble vers un objectif commun. J'ai également compris que la connaissance théorique prend tout son sens lorsqu'elle est confrontée à la réalité du terrain.
-                    </p>
+                    <p data-i18n="g5-c">Ce stage m'a permis de développer plusieurs compétences : le <span class="hl">sens de l'organisation</span>, la capacité à <span class="hl">travailler sous pression</span>, l'<span class="hl">attention aux détails</span> sur le terrain, et surtout la valeur du <span class="hl">travail en équipe</span> — s'écouter, respecter les idées des autres et avancer ensemble. J'ai compris que la théorie prend tout son sens confrontée à la réalité du terrain.</p>
                 </div>
             </div>
 
             <div class="grille-row">
                 <div class="grille-header">
-                    <span class="grille-header-num">Étape 6</span>
-                    <span class="grille-header-title">Plan d'action</span>
-                    <span class="grille-header-question">Que ferais-je différemment ?</span>
+                    <span class="grille-header-num"      data-i18n="g6-num">Étape 6</span>
+                    <span class="grille-header-title"    data-i18n="g6-title">Plan d'action</span>
+                    <span class="grille-header-question" data-i18n="g6-q">Que ferais-je différemment ?</span>
                 </div>
                 <div class="grille-content">
-                    <p>
-                        Si c'était à refaire, je <span class="hl">proposerais dès le départ une répartition claire des rôles</span> au sein du groupe — responsable de la rédaction, de la mise en page, de la sélection des photos — afin d'éviter les doublons et les retards. Je veillerais aussi à <span class="hl">fixer des points d'étape réguliers</span> pour m'assurer que tout le monde avance au même rythme. Ces apprentissages, je les applique aujourd'hui dans mes travaux de groupe à l'Université Rennes 2.
-                    </p>
+                    <p data-i18n="g6-c">Si c'était à refaire, je <span class="hl">proposerais dès le départ une répartition claire des rôles</span> — rédaction, mise en page, sélection des photos — pour éviter doublons et retards. Je veillerais aussi à <span class="hl">fixer des points d'étape réguliers</span>. Ces apprentissages, je les applique aujourd'hui dans mes travaux de groupe à Rennes 2.</p>
                 </div>
             </div>
 
@@ -635,28 +415,146 @@
     </div>
 </section>
 
-<!-- ════════════════════════════════════ FOOTER -->
+<!-- ══ CONTACT ════════════════════════════════════════ -->
+<section class="contact" id="contact">
+    <div class="container">
+        <p class="section-label" data-i18n="ct-label">Me contacter</p>
+        <h2 class="section-title" data-i18n="ct-title">Contact</h2>
+
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon">✉</div>
+                <div>
+                    <div class="contact-info-label" data-i18n="ct-email-l">Email</div>
+                    <div class="contact-info-value"><a href="mailto:aissatouyerobah65@gmail.com">aissatouyerobah65@gmail.com</a></div>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div>
+                    <div class="contact-info-label" data-i18n="ct-addr-l">Adresse</div>
+                    <div class="contact-info-value" data-i18n="ct-addr-v">Rennes, France</div>
+                </div>
+            </div>
+        </div>
+
+        <a href="cv.pdf" download class="cv-btn">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span data-i18n="cv-btn">Télécharger mon CV</span>
+        </a>
+    </div>
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════════════════ -->
 <footer>
     <div class="footer-name">Aissatou Yero Bah</div>
-    <p class="footer-subtitle">L1 Administration Économique et Sociale &middot; Université Rennes 2</p>
+    <p class="footer-subtitle" data-i18n="ft-sub">L1 Administration Économique et Sociale &middot; Université Rennes 2</p>
     <div class="footer-divider"></div>
-    <p class="footer-note">ePortfolio réalisé dans le cadre de la L1 AES &middot; Université Rennes 2 &middot; 2025 – 2026</p>
+    <p class="footer-note" data-i18n="ft-note">ePortfolio réalisé dans le cadre de la L1 AES &middot; Université Rennes 2 &middot; 2025 – 2026</p>
 </footer>
 
 <script>
-    function toggleMenu() {
-        document.getElementById('navLinks').classList.toggle('open');
-        document.getElementById('burger').classList.toggle('open');
-    }
-    function closeMenu() {
-        document.getElementById('navLinks').classList.remove('open');
-        document.getElementById('burger').classList.remove('open');
-    }
-    // Ferme le menu si on clique en dehors
-    document.addEventListener('click', function(e) {
-        var nav = document.querySelector('nav');
-        if (!nav.contains(e.target)) closeMenu();
+/* ── TRADUCTIONS ──────────────────────────────────────── */
+const T = {
+fr: {
+  'nav-1':'Présentation','nav-2':'Parcours','nav-3':"Situation d'apprentissage",'nav-4':'Contact',
+  'hero-badge':'ePortfolio · Licence AES · Université Rennes 2',
+  'hero-subtitle':'Étudiante en L1 Administration Économique et Sociale<br>Université Rennes 2 &middot; 2025 – 2026',
+  'tag-ss':'Sciences sociales','tag-eco':'Économie','tag-law':'Droit','tag-adm':'Administration',
+  'cv-btn':'Télécharger mon CV',
+  'about-label':'Qui suis-je ?','about-title':'Présentation',
+  'about-p1':"Je m'appelle <strong>Aissatou Yero Bah</strong>, je suis étudiante guinéenne actuellement inscrite en première année de Licence <strong>Administration Économique et Sociale (AES)</strong> à l'Université Rennes 2.",
+  'about-p2':"Née en Guinée, j'ai grandi avec la conviction profonde que l'éducation est la clé de l'émancipation personnelle et collective. Mon parcours a été marqué dès le départ par une grande curiosité intellectuelle, d'abord orientée vers les sciences naturelles, puis progressivement vers les sciences humaines et sociales.",
+  'about-p3':"Mon arrivée en France en 2024 représente pour moi un nouveau départ — une opportunité de m'ouvrir à de nouvelles disciplines et de construire un projet professionnel solide dans les domaines de l'économie, du droit et de l'administration publique.",
+  'about-p4':"Curieuse, déterminée et rigoureuse, j'aborde chaque défi comme une opportunité d'apprendre et de progresser. Mon parcours atypique, entre sciences exactes et sciences sociales, entre Guinée et France, forge un regard unique que je considère comme une richesse.",
+  'il-nat':'Nationalité','iv-nat':'Guinéenne',
+  'il-form':'Formation','iv-form':'L1 AES &mdash; Université Rennes 2',
+  'il-bac':'Bac obtenu','iv-bac':'Sciences Expérimentales &mdash; 2023, mention Assez Bien',
+  'il-lang':'Langues','iv-lang':'Français &bull; Pular (langue maternelle)',
+  'il-int':"Centres d'intérêt",'iv-int':'Sciences, économie du développement, culture',
+  'parc-label':'Mon histoire','parc-title':'Parcours',
+  'tl1-date':'Avant 2023 — Guinée','tl1-title':'Scolarité — Parcours scientifique','tl1-sub':'Guinée','tl1-desc':"Scolarité effectuée en Guinée dans la filière scientifique. Je développe dès le lycée un goût prononcé pour les matières scientifiques et une méthode de travail rigoureuse qui m'accompagnera tout au long de mon parcours.",
+  'tl2-date':'2023 — Guinée','tl2-title':'Baccalauréat — Sciences Expérimentales','tl2-sub':'Mention Assez Bien &mdash; Guinée','tl2-desc':"Obtention du Baccalauréat en Sciences Expérimentales avec la mention Assez Bien, validant des compétences solides en biologie, physique-chimie et sciences de la vie et de la Terre. Ce diplôme ouvre pour moi les portes de l'enseignement supérieur.",
+  'tl3-date':'2023 – 2024 — Boké, Guinée','tl3-title':'Études supérieures — Sciences de la Terre','tl3-sub':'Université de Boké, Guinée','tl3-desc':"Études supérieures en Sciences de la Terre à l'Université de Boké. Cette formation pratique et exigeante me permet d'allier théorie et terrain, notamment à travers un stage de découverte encadré par mes professeurs sur les ressources naturelles de la région.",
+  'tl4-date':'2024 — Nancy, France','tl4-title':'Arrivée en France — Sciences de la Terre','tl4-sub':'Université de Lorraine, Nancy','tl4-desc':"Arrivée en France et inscription en Sciences de la Terre à l'Université de Lorraine à Nancy. Une première immersion dans le système universitaire français : ses codes, ses méthodes pédagogiques, et son exigence d'autonomie constituent autant de nouveaux défis à relever.",
+  'tl5-date':'2025 — Rennes, France','tl5-title':'Réorientation — Licence AES','tl5-sub':'Université Rennes 2','tl5-desc':"Choix de réorientation vers l'Administration Économique et Sociale à l'Université Rennes 2. Une décision mûrement réfléchie, motivée par l'envie d'explorer les sciences sociales, le droit et l'économie — des disciplines en prise directe avec les enjeux de développement qui me tiennent profondément à cœur.",
+  'sit-label':'Réflexivité','sit-title':"Situation d'apprentissage",
+  'sit-h3':'Stage de découverte sur le terrain — Université de Boké',
+  'sit-p':"Dans le cadre de mes études en Sciences de la Terre à l'Université de Boké, j'ai participé à un stage de découverte sur le terrain avec mes camarades de classe, encadré par nos professeurs. Ce stage nous a menés à la découverte de gisements de fer ainsi que de plages de la région. Nos professeurs nous ont expliqué la formation de ces ressources naturelles et leur importance économique et environnementale. À l'issue du terrain, nous avons approfondi nos recherches par groupes pour constituer une brochure illustrée de photos, et nous avons soutenu nos travaux devant nos professeurs.",
+  'grille-title':'Grille de réflexivité',
+  'g1-num':'Étape 1','g1-title':'Description','g1-q':"Que s'est-il passé ?",'g1-c':"Durant mes études en Sciences de la Terre à l'Université de Boké, j'ai participé à un <span class='hl'>stage de découverte sur le terrain</span> organisé avec mes camarades et encadré par nos professeurs. Nous avons visité des <span class='hl'>gisements de fer</span> ainsi que des plages de la région. Nos encadrants nous ont expliqué comment se forment ces ressources naturelles et leur importance économique et environnementale. Après le terrain, nous avons travaillé en groupes pour <span class='hl'>constituer une brochure</span> illustrée de photos des sites visités, que nous avons ensuite <span class='hl'>soutenue devant nos professeurs</span>.",
+  'g2-num':'Étape 2','g2-title':'Ressentis','g2-q':'Comment me suis-je sentie ?','g2-c':"J'ai ressenti beaucoup d'<span class='hl'>enthousiasme et de curiosité</span> dès les premières heures sur le terrain : voir concrètement ce que j'avais appris en cours était une expérience nouvelle et stimulante. Lors du travail de groupe pour la brochure, j'ai également éprouvé une certaine <span class='hl'>pression</span> — la soutenance approchait, il fallait coordonner les contributions de chacun et structurer le contenu de façon cohérente. Cette pression m'a poussée à me dépasser et à rester concentrée sur l'objectif commun.",
+  'g3-num':'Étape 3','g3-title':'Évaluation','g3-q':'Ce qui a bien ou mal fonctionné ?','g3-c':"<span class='hl'>Ce qui a bien fonctionné :</span> la cohésion du groupe a été un vrai point fort. Chacun a apporté sa contribution et le fait de travailler sur des données collectées nous-mêmes a rendu le travail concret et motivant. La soutenance s'est bien déroulée.<br><br><span class='hl'>Ce qui a été difficile :</span> organiser le travail collectif dans un délai serré a demandé des efforts importants. Il a parfois fallu concilier des approches différentes et s'assurer que tout le monde avançait au même rythme.",
+  'g4-num':'Étape 4','g4-title':'Analyse','g4-q':'Pourquoi ces difficultés ?','g4-c':"Les difficultés s'expliquent par le fait que c'était pour beaucoup une <span class='hl'>première expérience de travail en groupe avec une production écrite et une soutenance formelle</span>. Nous n'avions pas encore développé les réflexes de répartition des tâches et de suivi collectif. La <span class='hl'>contrainte de temps</span> a également amplifié ces difficultés, laissant peu de marge pour corriger les écarts d'avancement.",
+  'g5-num':'Étape 5','g5-title':'Conclusions','g5-q':"Qu'ai-je appris ?",'g5-c':"Ce stage m'a permis de développer plusieurs compétences : le <span class='hl'>sens de l'organisation</span>, la capacité à <span class='hl'>travailler sous pression</span>, l'<span class='hl'>attention aux détails</span> sur le terrain, et surtout la valeur du <span class='hl'>travail en équipe</span> — s'écouter, respecter les idées des autres et avancer ensemble. J'ai compris que la théorie prend tout son sens confrontée à la réalité du terrain.",
+  'g6-num':'Étape 6','g6-title':"Plan d'action",'g6-q':'Que ferais-je différemment ?','g6-c':"Si c'était à refaire, je <span class='hl'>proposerais dès le départ une répartition claire des rôles</span> — rédaction, mise en page, sélection des photos — pour éviter doublons et retards. Je veillerais aussi à <span class='hl'>fixer des points d'étape réguliers</span>. Ces apprentissages, je les applique aujourd'hui dans mes travaux de groupe à Rennes 2.",
+  'ct-label':'Me contacter','ct-title':'Contact','ct-email-l':'Email','ct-addr-l':'Adresse','ct-addr-v':'Rennes, France',
+  'ft-sub':'L1 Administration Économique et Sociale &middot; Université Rennes 2',
+  'ft-note':'ePortfolio réalisé dans le cadre de la L1 AES &middot; Université Rennes 2 &middot; 2025 – 2026'
+},
+en: {
+  'nav-1':'About','nav-2':'Background','nav-3':'Learning Experience','nav-4':'Contact',
+  'hero-badge':'ePortfolio · Bachelor AES · Rennes 2 University',
+  'hero-subtitle':'First-year student in Economics, Law & Administration<br>Rennes 2 University &middot; 2025 – 2026',
+  'tag-ss':'Social Sciences','tag-eco':'Economics','tag-law':'Law','tag-adm':'Administration',
+  'cv-btn':'Download my CV',
+  'about-label':'About me','about-title':'About',
+  'about-p1':'My name is <strong>Aissatou Yero Bah</strong>. I am a Guinean student currently enrolled in the first year of a Bachelor\'s degree in <strong>Economics, Law & Administration (AES)</strong> at Rennes 2 University.',
+  'about-p2':'Born in Guinea, I grew up with a deep conviction that education is the key to personal and collective empowerment. My journey has been marked from the start by an insatiable intellectual curiosity, first oriented toward the natural sciences, then gradually toward the social sciences.',
+  'about-p3':'My arrival in France in 2024 represents a fresh start — an opportunity to open myself to new disciplines and build a solid professional project in the fields of economics, law and public administration.',
+  'about-p4':'Curious, determined and rigorous, I approach every challenge as an opportunity to learn and grow. My non-traditional path — bridging exact sciences and social sciences, Guinea and France — gives me a unique perspective that I consider a true strength.',
+  'il-nat':'Nationality','iv-nat':'Guinean',
+  'il-form':'Degree','iv-form':'L1 AES &mdash; Rennes 2 University',
+  'il-bac':'Baccalaureate','iv-bac':'Experimental Sciences &mdash; 2023, Merit (Assez Bien)',
+  'il-lang':'Languages','iv-lang':'French &bull; Pular (mother tongue)',
+  'il-int':'Interests','iv-int':'Sciences, development economics, culture',
+  'parc-label':'My story','parc-title':'Background',
+  'tl1-date':'Before 2023 — Guinea','tl1-title':'Secondary School — Science Track','tl1-sub':'Guinea','tl1-desc':'Schooling completed in Guinea in the science track. From secondary school onwards, I developed a strong interest in scientific subjects and a rigorous work ethic that has accompanied me throughout my journey.',
+  'tl2-date':'2023 — Guinea','tl2-title':'Baccalaureate — Experimental Sciences','tl2-sub':'Merit (Assez Bien) &mdash; Guinea','tl2-desc':'Obtained the Baccalaureate in Experimental Sciences with Merit, validating strong competencies in biology, chemistry-physics, and life and earth sciences. This diploma opened the doors of higher education for me.',
+  'tl3-date':'2023 – 2024 — Boké, Guinea','tl3-title':'Higher Education — Earth Sciences','tl3-sub':'University of Boké, Guinea','tl3-desc':'Higher education in Earth Sciences at the University of Boké. This demanding and practical programme allowed me to combine theory and fieldwork, including a discovery internship supervised by my professors on the natural resources of the region.',
+  'tl4-date':'2024 — Nancy, France','tl4-title':'Arrival in France — Earth Sciences','tl4-sub':'University of Lorraine, Nancy','tl4-desc':'Arrival in France and enrolment in Earth Sciences at the University of Lorraine in Nancy. My first immersion in the French university system: its codes, teaching methods and expectation of student autonomy were all new challenges to overcome.',
+  'tl5-date':'2025 — Rennes, France','tl5-title':'Change of Direction — Bachelor AES','tl5-sub':'Rennes 2 University','tl5-desc':'Decision to redirect towards Economics, Law & Administration at Rennes 2 University. A carefully considered choice, driven by a desire to explore social sciences, law and economics — disciplines directly connected to the development issues I care deeply about.',
+  'sit-label':'Reflexivity','sit-title':'Learning Experience',
+  'sit-h3':'Field Discovery Internship — University of Boké',
+  'sit-p':"As part of my Earth Sciences studies at the University of Boké, I took part in a field discovery internship with my classmates, supervised by our professors. The internship took us to discover iron ore deposits as well as beaches in the region. Our supervisors explained how these natural resources are formed and their economic and environmental significance. After the fieldwork, we deepened our research in groups to produce an illustrated brochure with photos from the sites visited, which we then presented and defended before our professors.",
+  'grille-title':'Reflection Grid',
+  'g1-num':'Step 1','g1-title':'Description','g1-q':'What happened?','g1-c':"During my Earth Sciences studies at the University of Boké, I took part in a <span class='hl'>field discovery internship</span> organised with my classmates and supervised by our professors. We visited <span class='hl'>iron ore deposits</span> and beaches in the region. Our supervisors explained how these natural resources are formed and their economic and environmental importance. After the fieldwork, we worked in groups to <span class='hl'>produce an illustrated brochure</span> with photos from the various sites visited, which we then <span class='hl'>presented before our professors</span>.",
+  'g2-num':'Step 2','g2-title':'Feelings','g2-q':'How did I feel?','g2-c':"I felt a great deal of <span class='hl'>enthusiasm and curiosity</span> from the very first hours in the field: seeing first-hand what I had learned in class was a new and stimulating experience. During the group work for the brochure, I also experienced a certain amount of <span class='hl'>pressure</span> — the defence was approaching, we had to coordinate contributions and structure the content coherently. This pressure pushed me to surpass myself and stay focused on our shared goal.",
+  'g3-num':'Step 3','g3-title':'Evaluation','g3-q':'What worked well or poorly?','g3-c':"<span class='hl'>What worked well:</span> group cohesion was a real strength. Everyone contributed, and working with data we had collected ourselves made the work concrete and motivating. The defence went well.<br><br><span class='hl'>What was difficult:</span> organising collective work under a tight deadline required significant coordination. It was sometimes necessary to reconcile different approaches and ensure everyone was progressing at the same pace.",
+  'g4-num':'Step 4','g4-title':'Analysis','g4-q':'Why these difficulties?','g4-c':"The difficulties can partly be explained by the fact that for many of us, this was a <span class='hl'>first experience of group work with a written output and a formal defence</span>. We had not yet developed the reflexes for task allocation and collective monitoring. The <span class='hl'>time constraint</span> also amplified these difficulties, leaving little room to correct gaps in progress.",
+  'g5-num':'Step 5','g5-title':'Conclusions','g5-q':'What did I learn?','g5-c':"This internship allowed me to develop several key skills: a <span class='hl'>sense of organisation</span>, the ability to <span class='hl'>work under pressure</span>, <span class='hl'>attention to detail</span> in the field, and above all the value of <span class='hl'>teamwork</span> — listening to one another, respecting ideas, and moving forward together. I came to understand that theory takes on its full meaning when confronted with the reality of the field.",
+  'g6-num':'Step 6','g6-title':'Action Plan','g6-q':'What would I do differently?','g6-c':"If I were to do it again, I would <span class='hl'>propose a clear division of roles from the outset</span> — writing, layout, photo selection — to avoid duplication and delays. I would also make sure to <span class='hl'>set regular check-in points</span>. I now apply these lessons to my group work at Rennes 2 University.",
+  'ct-label':'Get in touch','ct-title':'Contact','ct-email-l':'Email','ct-addr-l':'Location','ct-addr-v':'Rennes, France',
+  'ft-sub':'L1 Economics, Law & Administration &middot; Rennes 2 University',
+  'ft-note':'ePortfolio created as part of the L1 AES programme &middot; Rennes 2 University &middot; 2025 – 2026'
+}
+};
+
+/* ── LANGUE ───────────────────────────────────────────── */
+let lang = 'fr';
+
+function toggleLang() {
+    lang = lang === 'fr' ? 'en' : 'fr';
+    document.getElementById('langBtn').textContent = lang === 'fr' ? 'EN' : 'FR';
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (T[lang][k] !== undefined) el.innerHTML = T[lang][k];
     });
+}
+
+/* ── MENU MOBILE ──────────────────────────────────────── */
+function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+    document.getElementById('burger').classList.toggle('open');
+}
+function closeMenu() {
+    document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('burger').classList.remove('open');
+}
+document.addEventListener('click', e => {
+    if (!document.querySelector('nav').contains(e.target)) closeMenu();
+});
 </script>
 </body>
 </html>
